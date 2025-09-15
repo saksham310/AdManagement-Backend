@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { ShareholderRole } from '../../shareholder/entities/shareholder.entity';
@@ -7,6 +12,7 @@ export interface JwtPayload {
   sub: string;
   email: string;
   role: ShareholderRole;
+  group?: string;
   iat?: number;
   exp?: number;
 }

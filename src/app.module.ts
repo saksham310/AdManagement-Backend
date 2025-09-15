@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { ShareholderModule } from './shareholder/shareholder.module';
 import { AuthModule } from './auth/auth.module';
+import { AdsModule } from './ads/ads.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
     DatabaseModule,
     ShareholderModule,
     AuthModule,
+    AdsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

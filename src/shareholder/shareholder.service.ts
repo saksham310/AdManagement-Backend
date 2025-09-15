@@ -18,10 +18,14 @@ export class ShareholderService {
 
   async create(
     payload: CreateShareholderDto,
-    role: ShareholderRole = 'shareholder',
+    role: ShareholderRole = 'advertiser',
   ): Promise<Shareholder> {
     const passwordHash = await bcrypt.hash(payload.password, 10);
-    const shareholder = this.shareholderRepo.create({ ...payload, passwordHash, role });
+    const shareholder = this.shareholderRepo.create({
+      ...payload,
+      passwordHash,
+      role,
+    });
     return this.shareholderRepo.save(shareholder);
   }
 }

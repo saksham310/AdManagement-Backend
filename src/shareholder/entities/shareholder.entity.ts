@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-export type ShareholderRole = 'admin' | 'shareholder';
+export type ShareholderRole = 'admin' | 'advertiser';
 
 @Entity()
 export class Shareholder {
@@ -22,7 +22,7 @@ export class Shareholder {
   @Column()
   passwordHash: string;
 
-  @Column({ type: 'varchar', default: 'shareholder' })
+  @Column({ type: 'varchar', default: 'advertiser' })
   role: ShareholderRole;
 
   @CreateDateColumn()
@@ -30,4 +30,7 @@ export class Shareholder {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Column({ nullable: true })
+  group?: string;
 }

@@ -15,4 +15,8 @@ export class CreateShareholderDto {
 
   @IsOptional()
   role?: ShareholderRole;
+
+  @IsString()
+  @IsOptional()
+  group?: string;
 }

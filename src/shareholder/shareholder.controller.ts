@@ -10,8 +10,8 @@ import { Roles } from '../auth/decorators/role.decorator';
 export class ShareholderController {
   constructor(private readonly shareholderService: ShareholderService) {}
 
-  @Post()
   @Roles('admin')
+  @Post()
   async create(@Body() dto: CreateShareholderDto) {
     return this.shareholderService.create(dto, dto.role);
   }

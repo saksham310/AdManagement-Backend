@@ -33,4 +33,7 @@ export class User {
 
   @Column({ nullable: true })
   group?: string;
+
+  @Column({ default: true })
+  isNew: boolean;
 }

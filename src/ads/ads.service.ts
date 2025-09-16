@@ -41,10 +41,11 @@ export class AdsService {
   }
 
   async findAdByGroup(group: string | undefined): Promise<Ad[]> {
+    console.log('Finding ads for group:', group);
     if (!group) {
-      // Admin: fetch all ads
       return this.adRepository.find();
     }
+
     return this.adRepository.find({ where: { group } });
   }
 }

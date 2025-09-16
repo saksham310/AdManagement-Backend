@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
-import { ShareholderModule } from './shareholder/shareholder.module';
+import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { AdsModule } from './ads/ads.module';
 
@@ -11,7 +11,7 @@ import { AdsModule } from './ads/ads.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
-    ShareholderModule,
+    UserModule,
     AuthModule,
     AdsModule,
   ],

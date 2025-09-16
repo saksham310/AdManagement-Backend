@@ -13,11 +13,18 @@ export class AdsController {
       group: string;
       app: string;
       page: string;
+      placement: string;
       bannerUrl?: string;
     },
   ) {
-    const { group, app, page, bannerUrl } = body;
-    return this.adsService.incrementImpression(group, app, page, bannerUrl);
+    const { group, app, page, bannerUrl, placement } = body;
+    return this.adsService.incrementImpression(
+      group,
+      app,
+      page,
+      placement,
+      bannerUrl,
+    );
   }
 
   @UseGuards(JwtAuthGuard)

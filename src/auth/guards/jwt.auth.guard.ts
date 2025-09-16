@@ -4,14 +4,14 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+import { JwtService, TokenExpiredError } from '@nestjs/jwt';
 import { Request } from 'express';
-import { ShareholderRole } from '../../shareholder/entities/shareholder.entity';
+import { UserRole } from '../../user/entities/user.entity';
 
 export interface JwtPayload {
   sub: string;
   email: string;
-  role: ShareholderRole;
+  role: UserRole;
   group?: string;
   iat?: number;
   exp?: number;
@@ -35,8 +35,11 @@ export class JwtAuthGuard implements CanActivate {
       const payload: JwtPayload = this.jwtService.verify(token);
       req.user = payload;
       return true;
-    } catch {
-      throw new UnauthorizedException('Invalid or expired token');
+    } catch (err) {
+      if (err instanceof TokenExpiredError) {
+        throw new UnauthorizedException('Token expired'); // explicitly expired
+      }
+      throw new UnauthorizedException('Invalid token'); // anything else
     }
   }
 }

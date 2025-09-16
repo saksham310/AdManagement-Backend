@@ -1,7 +1,7 @@
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { type ShareholderRole } from '../entities/shareholder.entity';
+import { type UserRole } from '../entities/user.entity';
 
-export class CreateShareholderDto {
+export class CreateUserDto {
   @IsString()
   name: string;
 
@@ -14,7 +14,7 @@ export class CreateShareholderDto {
   password: string;
 
   @IsOptional()
-  role?: ShareholderRole;
+  role?: UserRole;
 
   @IsString()
   @IsOptional()

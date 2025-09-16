@@ -18,6 +18,7 @@ export class AdsService {
     group: string,
     app: string,
     page: string,
+    placement: string,
     bannerUrl?: string,
   ) {
     let ad = await this.findAd(group, app, page);
@@ -27,6 +28,7 @@ export class AdsService {
         group,
         app,
         page,
+        placement,
         bannerUrl,
         impressionCount: 1,
       });

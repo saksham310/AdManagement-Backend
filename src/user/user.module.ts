@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
-import { ShareholderService } from './shareholder.service';
-import { ShareholderController } from './shareholder.controller';
-import { Shareholder } from './entities/shareholder.entity';
+import { UserService } from './user.service';
+import { UserController } from './user.controller';
+import { User } from './entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  controllers: [ShareholderController],
+  controllers: [UserController],
   imports: [
-    TypeOrmModule.forFeature([Shareholder]),
+    TypeOrmModule.forFeature([User]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -19,7 +19,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
     }),
   ],
-  providers: [ShareholderService],
-  exports: [ShareholderService],
+  providers: [UserService],
+  exports: [UserService],
 })
-export class ShareholderModule {}
+export class UserModule {}

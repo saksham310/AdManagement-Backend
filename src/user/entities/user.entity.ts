@@ -6,10 +6,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-export type ShareholderRole = 'admin' | 'advertiser';
+export type UserRole = 'admin' | 'advertiser';
 
 @Entity()
-export class Shareholder {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -23,7 +23,7 @@ export class Shareholder {
   passwordHash: string;
 
   @Column({ type: 'varchar', default: 'advertiser' })
-  role: ShareholderRole;
+  role: UserRole;
 
   @CreateDateColumn()
   createdAt: Date;

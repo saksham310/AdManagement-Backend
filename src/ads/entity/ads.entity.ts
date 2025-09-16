@@ -20,6 +20,9 @@ export class Ad {
   @Column()
   page: string; // e.g., "CameraPrompt"
 
+  @Column()
+  placement: string;
+
   @Column({ nullable: true })
   bannerUrl?: string;
 

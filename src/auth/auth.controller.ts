@@ -12,7 +12,7 @@ export class AuthController {
   }
 
   @Patch('change-password')
-  async changePassword(@Body() body: { userId: string; newPassword: string }) {
-    return this.authService.changePassword(body.userId, body.newPassword);
+  async changePassword(@Body() body: { email: string; newPassword: string }) {
+    return this.authService.changePassword(body.email, body.newPassword);
   }
 }

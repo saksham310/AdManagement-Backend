@@ -1,7 +1,9 @@
+import { CreateAdDto } from './dto/create-ads.dto';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Ad } from './entity/ads.entity';
 import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+import { UpdateAdDto } from './dto/update-ads.dto';
 
 @Injectable()
 export class AdsService {
@@ -40,12 +42,33 @@ export class AdsService {
     return this.adRepository.save(ad);
   }
 
-  async findAdByGroup(group: string | undefined): Promise<Ad[]> {
-    console.log('Finding ads for group:', group);
+  async findAdByGroup(group?: string): Promise<Ad[]> {
     if (!group) {
       return this.adRepository.find();
     }
-
     return this.adRepository.find({ where: { group } });
+  }
+
+  async createAd(dto: CreateAdDto): Promise<Ad> {
+    const ad = this.adRepository.create({
+      group: dto.group,
+      app: dto.app,
+      page: dto.page,
+      placement: dto.placement,
+      bannerUrl: dto.bannerUrl,
+      impressionCount: dto.impressionCount ?? 0,
+      status: dto.status ?? 'active',
+    });
+    return this.adRepository.save(ad);
+  }
+
+  async updateAd(id: string, dto: UpdateAdDto) {
+    const ad = await this.adRepository.findOneBy({ id: id });
+    if (!ad) {
+      throw new Error(`Ad with id ${id} not found`);
+    }
+
+    Object.assign(ad, dto); // merge fields
+    return this.adRepository.save(ad);
   }
 }
